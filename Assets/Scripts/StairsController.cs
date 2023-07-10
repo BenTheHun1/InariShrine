@@ -140,8 +140,8 @@ public class StairsController : MonoBehaviour
 			//step.vertices[6] = step.vertices[7] + new Vector3(0, newHeight, 0) * 1.5f + mountainFix;
 			//step.vertices[8] = step.vertices[9] + new Vector3(0, newHeight, 0) * 1.5f + mountainFix;
 
-			step.vertices[10] = new Vector3(step.vertices[10].x, step.vertices[10].y, step.vertices[10].z - currentTurn.y);
-			step.vertices[12] = new Vector3(step.vertices[12].x, step.vertices[12].y, step.vertices[12].z + currentTurn.y);
+			//step.vertices[10] = new Vector3(step.vertices[10].x, step.vertices[10].y, step.vertices[10].z - currentTurn.y);
+			//step.vertices[12] = new Vector3(step.vertices[12].x, step.vertices[12].y, step.vertices[12].z + currentTurn.y);
 
 			step.vertices[2] = new Vector3(step.vertices[4].x, step.vertices[0].y, step.vertices[4].z);
 			step.vertices[3] = new Vector3(step.vertices[5].x, step.vertices[1].y, step.vertices[5].z);

@@ -73,10 +73,10 @@ public class Stairs : MonoBehaviour
 		uvs[3] = new Vector2(2f / 3f, 0.5f);
 		uvs[4] = new Vector2(1f / 3f, 0f);
 		uvs[5] = new Vector2(2f / 3f, 0f);
-		uvs[6] = new Vector2(0f, 1f);
-		uvs[7] = new Vector2(0f, 0f);
-		uvs[8] = new Vector2(1f, 1f);
-		uvs[9] = new Vector2(1f, 0f);
+		uvs[6] = new Vector2(1f / 6f, 1f);
+		uvs[7] = new Vector2(1f / 6f, 0f);
+		uvs[8] = new Vector2(5f / 6f, 1f);
+		uvs[9] = new Vector2(5f / 6f, 0f);
 		uvs[10] = new Vector2(0f, 1f);
 		uvs[11] = new Vector2(0f, 0f);
 		uvs[12] = new Vector2(1f, 1f);
