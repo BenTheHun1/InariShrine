@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 	public RaycastHit ray;
 	public bool pausedSteps;
 	public AudioSource steps;
+	public PauseMenu pause;
 
 	// Start is called before the first frame update
 	void Start()
@@ -78,6 +79,10 @@ public class PlayerController : MonoBehaviour
 		{
 			transform.position = new Vector3(0f, 2f, -2f);
 			curStep = null;
+		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			pause.Pause();
 		}
 	}
 

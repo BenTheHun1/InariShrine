@@ -10,7 +10,11 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		DontDestroyOnLoad(music);
+		if (!FindObjectOfType<AudioSource>())
+		{
+			GameObject musicPlayer  = Instantiate(music);
+			DontDestroyOnLoad(musicPlayer);
+		}
     }
 
     // Update is called once per frame
@@ -18,6 +22,7 @@ public class MainMenu : MonoBehaviour
     {
         
     }
+
 
 	public void StartGame()
 	{
