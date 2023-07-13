@@ -15,8 +15,16 @@ public class MainMenu : MonoBehaviour
     {
 		if (PlayerPrefs.HasKey("climbed"))
 		{
+			if (PlayerPrefs.GetInt("climbed") >= 12000)
+			{
+				playText.text = "Restart the Climb";
+			}
+			else
+			{
+
+				playText.text = "Continue the Climb";
+			}
 			record.text = PlayerPrefs.GetInt("climbed").ToString("#,#");
-			playText.text = "Continue";
 		}
 
 		if (!FindObjectOfType<AudioSource>())
@@ -46,6 +54,10 @@ public class MainMenu : MonoBehaviour
 
 	public void StartGame()
 	{
+		if (PlayerPrefs.GetInt("climbed") >= 12000)
+		{
+			PlayerPrefs.DeleteKey("climbed");
+		}
 		SceneManager.LoadScene(1);
 	}
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StairsController : MonoBehaviour
 {
@@ -89,6 +90,14 @@ public class StairsController : MonoBehaviour
 	public void SpawnStep()
 	{
 		stepCount++;
+		if (stepCount > 500 && !plane.activeSelf)
+		{
+			plane.SetActive(false);
+		}
+		if (stairsClimbed >= 12000)
+		{
+			SceneManager.LoadScene(2);
+		}
 		newStep = Instantiate(Stairs, Vector3.zero, Quaternion.identity);
 		allSteps.Add(newStep);
 		

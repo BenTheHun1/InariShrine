@@ -9,10 +9,22 @@ public class ImageViewer : MonoBehaviour
 	public List<Sprite> photos;
 	private int curPhoto = 0;
 	public Image display;
+	public GameObject congrats;
     // Start is called before the first frame update
     void Start()
     {
         display.sprite = photos[0];
+		if (PlayerPrefs.HasKey("climbed"))
+		{
+			if (PlayerPrefs.GetInt("climbed") >= 12000)
+			{
+				congrats.SetActive(true);
+			}
+			else
+			{
+				congrats.SetActive(false);
+			}
+		}
     }
 
     // Update is called once per frame
