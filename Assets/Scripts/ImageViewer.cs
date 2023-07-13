@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ImageViewer : MonoBehaviour
@@ -17,7 +18,18 @@ public class ImageViewer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+		{
+			PhotoPrev();
+		}
+		else if (Input.GetKeyDown(KeyCode.RightArrow))
+		{
+			PhotoNext();
+		}
+		else if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Exit();
+		}
     }
 
 	public void PhotoNext()
@@ -38,5 +50,10 @@ public class ImageViewer : MonoBehaviour
 			curPhoto = photos.Count - 1;
 		}
 		display.sprite = photos[curPhoto];
+	}
+
+	public void Exit()
+	{
+		SceneManager.LoadScene(0);
 	}
 }

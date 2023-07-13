@@ -8,6 +8,8 @@ public class StairsController : MonoBehaviour
 	public GameObject Stairs;
 	public List<GameObject> allSteps;
 	public int stepCount;
+	public int adjustCount;
+	public int stairsClimbed;
 	public int startingStairs;
 	public Stairs lastStep;
 	public GameObject newStep;
@@ -22,6 +24,9 @@ public class StairsController : MonoBehaviour
 	public float turnChance;
 	public int deleteThreshold;
 
+	public GameObject plane;
+	public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,12 +35,14 @@ public class StairsController : MonoBehaviour
 		{
 			SpawnStep();
 		}
+
+		//StartCoroutine(Teleport());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        /*if (Input.GetKeyDown(KeyCode.Q))
 		{
 			SpawnStep();
 		}
@@ -54,8 +61,30 @@ public class StairsController : MonoBehaviour
 			{
 				SpawnStep();
 			}
+		}*/
+			
+	}
+
+	public void Teleport()
+	{
+		//yield return new WaitForSeconds(1f);
+		if (PlayerPrefs.HasKey("climbed"))
+		{
+			stairsClimbed = PlayerPrefs.GetInt("climbed");
+			if (stairsClimbed >= startingStairs / 2)
+			{
+				for (int i = 0; i < startingStairs / 2; i++)
+				{
+					SpawnStep();
+				}
+				FindObjectOfType<CharacterController>().enabled = false;
+				player.transform.position = allSteps[startingStairs / 2].transform.position;
+				FindObjectOfType<CharacterController>().enabled = true;
+				Debug.Log(allSteps[startingStairs / 2].transform.position + " " + player.transform.position);
+				plane.SetActive(false);
+			}
 		}
-    }
+	}
 
 	public void SpawnStep()
 	{
@@ -79,6 +108,7 @@ public class StairsController : MonoBehaviour
 
 	public void AdjustStep(Stairs step)
 	{
+		adjustCount++;
 		if (lastStep)
 		{
 			float newHeight = Random.Range(0f, .5f);
@@ -152,56 +182,16 @@ public class StairsController : MonoBehaviour
 			step.Rebuild();
 		}
 		
-		/*if (lastStep && false)
-		{
-			//Debug.Log(step.vertices.Length + " " + lastStep.vertices.Length);
-
-			//Bottom of step
-			step.vertices[4] = lastStep.vertices[0];
-			step.vertices[5] = lastStep.vertices[1];
-
-			float newHeight = Random.Range(0f, 1.5f);
-			float newDepth = 1f;
-
-			float leftTurn = 0f;
-
-			if (newHeight < 0.4f)
-			{
-				newHeight = 0f;
-			}
-			//Debug.Log(countLeftTurn);
-			if (countLeftTurn == 0)
-			{
-				float doTurn = Random.Range(0f, 1f);
-				if (doTurn <= 0.01f)
-				{
-					countLeftTurn = 5;
-				}
-			}
-			if (countLeftTurn > 0)
-			{
-				if (countLeftTurn == 1)
-				{
-					currentCurve -= 2f;
-				}
-				countLeftTurn--;
-				leftTurn = -1f;
-			}
-
-			//Debug.Log(leftTurn);
-			step.vertices[2] = new Vector3(step.vertices[4].x, step.vertices[4].y + newHeight, step.vertices[4].z);
-			step.vertices[3] = new Vector3(step.vertices[5].x, step.vertices[5].y + newHeight, step.vertices[5].z);
-
-			//top of step
-			step.vertices[0] = new Vector3(step.vertices[2].x + currentCurve + leftTurn, step.vertices[2].y, step.vertices[2].z + newDepth);
-			step.vertices[1] = new Vector3(step.vertices[3].x + currentCurve + (countLeftTurn > 0 ? leftTurn * 1.5f: leftTurn), step.vertices[3].y, step.vertices[3].z + (countLeftTurn > 0 ? newDepth * 2f: newDepth));
-
-			step.Rebuild();
-
-			step.GetComponent<BoxCollider>().center = new Vector3(lastStep.GetComponent<BoxCollider>().center.x + leftTurn, lastStep.GetComponent<BoxCollider>().center.y + newHeight, lastStep.GetComponent<BoxCollider>().center.z + 1);
-			//step.barrierLeft.center = new Vector3(step.GetComponent<BoxCollider>().center.x - 20f, step.GetComponent<BoxCollider>().center.y / 10f, step.GetComponent<BoxCollider>().center.z);
-			//step.barrierRight.center = new Vector3(step.GetComponent<BoxCollider>().center.x + 20f, step.GetComponent<BoxCollider>().center.y / 10f, step.GetComponent<BoxCollider>().center.z);
-		}*/
 		lastStep = step;
+		
+		if (adjustCount == startingStairs)
+		{
+			Teleport();
+		}
+	}
+
+	private void OnApplicationQuit()
+	{
+		PlayerPrefs.SetInt("climbed", stairsClimbed);
 	}
 }

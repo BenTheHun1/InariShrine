@@ -75,11 +75,12 @@ public class PlayerController : MonoBehaviour
 		velocity.y += gravity * Time.deltaTime;
 		controller.Move(velocity * Time.deltaTime);
 
-		if (Input.GetKeyDown(KeyCode.F))
+		/*if (Input.GetKeyDown(KeyCode.F))
 		{
-			transform.position = new Vector3(0f, 2f, -2f);
-			curStep = null;
-		}
+			Debug.Log(transform.position);
+			//stairsController.Teleport();
+			//curStep = null;
+		}*/
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			pause.Pause();
@@ -97,6 +98,7 @@ public class PlayerController : MonoBehaviour
 			{
 				steps.hasGenNextStep = true;
 				stairsController.SpawnStep();
+				stairsController.stairsClimbed++;
 			}
 		}
 	}
