@@ -79,7 +79,7 @@ public class StairsController : MonoBehaviour
 					SpawnStep();
 				}
 				FindObjectOfType<CharacterController>().enabled = false;
-				player.transform.position = allSteps[startingStairs / 2].transform.position;
+				player.transform.position = allSteps[startingStairs / 2].transform.position + Vector3.up;
 				FindObjectOfType<CharacterController>().enabled = true;
 				Debug.Log(allSteps[startingStairs / 2].transform.position + " " + player.transform.position);
 				plane.SetActive(false);
@@ -96,6 +96,7 @@ public class StairsController : MonoBehaviour
 		}
 		if (stairsClimbed >= 12000)
 		{
+			PlayerPrefs.SetInt("climbed", stairsClimbed);
 			SceneManager.LoadScene(2);
 		}
 		newStep = Instantiate(Stairs, Vector3.zero, Quaternion.identity);

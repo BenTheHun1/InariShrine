@@ -1707,11 +1707,12 @@ MonoBehaviour:
     not in the best of health, it was a struggle for me. At some point in the trek
     I had the realization that I need to go at my own pace, and to run to catch up
     with those I came with would be futile. I think in some aspects this can be applied
-    to life as well, that one can only do what they can, everyone moves through life
-    at different paces.
+    to life as well, that one can only do what one can, and everyone moves through
+    life at different paces.
 
-    This game is a representation of that journey. Take
-    your time, and climb all 12,000 steps of this mountain.'
+    This game is a representation of that journey.
+    Take your time, and climb all 12,000 steps of this mountain. At the top, you
+    can see some photos of the hike.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

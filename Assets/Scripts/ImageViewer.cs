@@ -25,7 +25,12 @@ public class ImageViewer : MonoBehaviour
 				congrats.SetActive(false);
 			}
 		}
-    }
+
+		else
+		{
+			congrats.SetActive(false);
+		}
+	}
 
     // Update is called once per frame
     void Update()
